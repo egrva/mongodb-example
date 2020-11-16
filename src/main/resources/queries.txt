@@ -1,0 +1,59 @@
+// inserts
+
+db.store.insert(
+    {
+        items_count: 5,
+        status: 'paid',
+        items: ['cheese', 'apple', 'mango', 'potato', 'pizza'],
+        comment: 'please, be faster'
+    }
+    );
+
+db.store.insert(
+    {
+        items_count: 5,
+        status: 'paid',
+        items: ['strawberry', 'apple', 'pineapple', 'meet', 'pizza'],
+        comment: 'please, be faster'
+    }
+    );
+
+db.store.insert(
+    {
+        items_count: 2,
+        status: 'delivered',
+        items: ['beer', 'milk'],
+        delivery_time: '18:00'
+    }
+    );
+
+//selects
+
+db.store.find({items: 'apple'})
+
+db.store.find({$or: [{items_count: {$lt: 3}}, {items: 'apple'}]})
+
+db.store.find({delivery_time: {$exists: true}})
+
+db.store.find({delivery_time: {$exists: true}}, {items: 1, _id: 0})
+
+db.store.find().sort({items_count: -1})
+
+//updates
+
+db.store.update({items: 'beer'} ,{$set: {order_price: 300}})
+db.store.update({items: 'beer'} ,{$set: {order_price: 400}})
+
+db.store.update({items: 'beer'} ,{$inc: {order_price: 100}})
+
+db.store.update({items: 'beer'} ,{$push: {items: 'banana'}})
+db.store.update({items: 'beer'} ,{$inc: {items_count: 1}})
+
+//relations
+db.store.update({items: 'beer'} ,{$set: {
+    customer: {
+        first_name : "Nastya",
+        second_name : "Egorova",
+        age : 20
+    }
+    }})
