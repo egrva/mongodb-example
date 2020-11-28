@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
         MongoClient client = MongoClients.create();
         MongoDatabase database = client.getDatabase("store");
-        MongoCollection<Document> collection = database.getCollection("store");
+        MongoCollection<Document> collection = database.getCollection("orders");
 
         Document searchQuery = new Document();
 
