@@ -4,3 +4,4 @@
 * mongodb with simple connection
 * mongodb jpa
 * mongodb with hateoas
+* query-dsl
